@@ -1,0 +1,236 @@
+{
+  "manifest_version": "0.3",
+  "name": "exa",
+  "version": "0.1.0",
+  "display_name": "Exa MCP",
+  "description": "Remote MCP server for AI-powered web search, code search, and research tools.",
+  "homepage": "https://exa.ai",
+  "documentation": "https://exa.ai/docs/reference/exa-mcp",
+  "icon": "icon.png",
+  "author": {
+    "name": "Stephen Akinyemi"
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ]
+  },
+  "server": {
+    "transport": "http",
+    "mcp_config": {
+      "url": "https://mcp.exa.ai/mcp?exaApiKey=${user_config.api_key}"
+    }
+  },
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "Exa API Key",
+      "description": "Your Exa API key from https://dashboard.exa.ai/api-keys",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "tools": [
+    {
+      "name": "web_search_exa",
+      "description": "Search the web for any topic and get clean, ready-to-use content."
+    },
+    {
+      "name": "get_code_context_exa",
+      "description": "Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs."
+    },
+    {
+      "name": "company_research_exa",
+      "description": "Research any company to get business information, news, and insights."
+    },
+    {
+      "name": "deep_search_exa",
+      "description": "Deep web search with smart query expansion and high-quality summaries for each result."
+    },
+    {
+      "name": "crawling_exa",
+      "description": "Get the full content of a specific webpage from a known URL."
+    },
+    {
+      "name": "linkedin_search_exa",
+      "description": "Search LinkedIn for companies and people using Exa AI."
+    },
+    {
+      "name": "deep_researcher_start",
+      "description": "Start an AI research agent that searches, reads, and writes a detailed report."
+    },
+    {
+      "name": "deep_researcher_check",
+      "description": "Check status and get results from a deep research task."
+    }
+  ],
+  "_meta": {
+    "store.tool.mcpb": {
+      "categories": ["search", "ai-ml", "development"],
+      "static_responses": {
+        "tools/list": {
+          "tools": [
+            {
+              "name": "web_search_exa",
+              "description": "Search the web for any topic and get clean, ready-to-use content.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The search query to find relevant web content"
+                  },
+                  "numResults": {
+                    "type": "number",
+                    "description": "Number of results to return (default: 10)",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            },
+            {
+              "name": "get_code_context_exa",
+              "description": "Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The code-related query to search for (e.g., 'React hooks tutorial', 'Python async patterns')"
+                  },
+                  "numResults": {
+                    "type": "number",
+                    "description": "Number of results to return (default: 10)",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            },
+            {
+              "name": "company_research_exa",
+              "description": "Research any company to get business information, news, and insights.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "companyName": {
+                    "type": "string",
+                    "description": "The name of the company to research"
+                  }
+                },
+                "required": [
+                  "companyName"
+                ]
+              }
+            },
+            {
+              "name": "deep_search_exa",
+              "description": "Deep web search with smart query expansion and high-quality summaries for each result.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The search query for deep web search"
+                  },
+                  "numResults": {
+                    "type": "number",
+                    "description": "Number of results to return (default: 10)",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            },
+            {
+              "name": "crawling_exa",
+              "description": "Get the full content of a specific webpage from a known URL.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "The URL of the webpage to crawl and extract content from"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            },
+            {
+              "name": "linkedin_search_exa",
+              "description": "Search LinkedIn for companies and people using Exa AI.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The search query for LinkedIn (company names, person names, or LinkedIn URLs)"
+                  },
+                  "numResults": {
+                    "type": "number",
+                    "description": "Number of results to return (default: 10)",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            },
+            {
+              "name": "deep_researcher_start",
+              "description": "Start an AI research agent that searches, reads, and writes a detailed report.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The research question or topic for the AI agent to investigate"
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            },
+            {
+              "name": "deep_researcher_check",
+              "description": "Check status and get results from a deep research task.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "taskId": {
+                    "type": "string",
+                    "description": "The task ID returned from deep_researcher_start"
+                  }
+                },
+                "required": [
+                  "taskId"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
