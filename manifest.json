@@ -11,11 +11,7 @@
     "name": "Stephen Akinyemi"
   },
   "compatibility": {
-    "platforms": [
-      "darwin",
-      "win32",
-      "linux"
-    ]
+    "platforms": ["darwin", "win32", "linux"]
   },
   "server": {
     "transport": "http",
@@ -38,32 +34,12 @@
       "description": "Search the web for any topic and get clean, ready-to-use content."
     },
     {
-      "name": "get_code_context_exa",
-      "description": "Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs."
-    },
-    {
       "name": "company_research_exa",
       "description": "Research any company to get business information, news, and insights."
     },
     {
-      "name": "deep_search_exa",
-      "description": "Deep web search with smart query expansion and high-quality summaries for each result."
-    },
-    {
-      "name": "crawling_exa",
-      "description": "Get the full content of a specific webpage from a known URL."
-    },
-    {
-      "name": "linkedin_search_exa",
-      "description": "Search LinkedIn for companies and people using Exa AI."
-    },
-    {
-      "name": "deep_researcher_start",
-      "description": "Start an AI research agent that searches, reads, and writes a detailed report."
-    },
-    {
-      "name": "deep_researcher_check",
-      "description": "Check status and get results from a deep research task."
+      "name": "get_code_context_exa",
+      "description": "Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs."
     }
   ],
   "_meta": {
@@ -81,39 +57,26 @@
                 "properties": {
                   "query": {
                     "type": "string",
-                    "description": "The search query to find relevant web content"
+                    "description": "Websearch query"
                   },
                   "numResults": {
                     "type": "number",
-                    "description": "Number of results to return (default: 10)",
-                    "default": 10
-                  }
-                },
-                "required": [
-                  "query"
-                ]
-              }
-            },
-            {
-              "name": "get_code_context_exa",
-              "description": "Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs.",
-              "input_schema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "type": "object",
-                "properties": {
-                  "query": {
+                    "description": "Number of search results to return (default: 10)"
+                  },
+                  "livecrawl": {
                     "type": "string",
-                    "description": "The code-related query to search for (e.g., 'React hooks tutorial', 'Python async patterns')"
+                    "description": "Live crawl mode - 'fallback': use live crawling as backup, 'always': always use live crawling, 'never': never use live crawling"
                   },
-                  "numResults": {
+                  "type": {
+                    "type": "string",
+                    "description": "Search type - 'auto': balanced search (default), 'fast': faster search"
+                  },
+                  "contextMaxCharacters": {
                     "type": "number",
-                    "description": "Number of results to return (default: 10)",
-                    "default": 10
+                    "description": "Maximum characters for context string optimized for LLMs"
                   }
                 },
-                "required": [
-                  "query"
-                ]
+                "required": ["query"]
               }
             },
             {
@@ -125,108 +88,56 @@
                 "properties": {
                   "companyName": {
                     "type": "string",
-                    "description": "The name of the company to research"
-                  }
-                },
-                "required": [
-                  "companyName"
-                ]
-              }
-            },
-            {
-              "name": "deep_search_exa",
-              "description": "Deep web search with smart query expansion and high-quality summaries for each result.",
-              "input_schema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string",
-                    "description": "The search query for deep web search"
+                    "description": "Name of the company to research"
                   },
                   "numResults": {
                     "type": "number",
-                    "description": "Number of results to return (default: 10)",
-                    "default": 10
+                    "description": "Number of search results to return (default: 10)"
                   }
                 },
-                "required": [
-                  "query"
-                ]
+                "required": ["companyName"]
               }
             },
             {
-              "name": "crawling_exa",
-              "description": "Get the full content of a specific webpage from a known URL.",
-              "input_schema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "The URL of the webpage to crawl and extract content from"
-                  }
-                },
-                "required": [
-                  "url"
-                ]
-              }
-            },
-            {
-              "name": "linkedin_search_exa",
-              "description": "Search LinkedIn for companies and people using Exa AI.",
+              "name": "get_code_context_exa",
+              "description": "Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs.",
               "input_schema": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
                 "properties": {
                   "query": {
                     "type": "string",
-                    "description": "The search query for LinkedIn (company names, person names, or LinkedIn URLs)"
+                    "description": "Search query to find relevant context for APIs, Libraries, and frameworks"
                   },
-                  "numResults": {
+                  "tokensNum": {
                     "type": "number",
-                    "description": "Number of results to return (default: 10)",
-                    "default": 10
+                    "description": "Number of tokens to return (1000-50000, default: 10000)"
                   }
                 },
-                "required": [
-                  "query"
-                ]
+                "required": ["query"]
               }
+            }
+          ]
+        },
+        "prompts/list": {
+          "prompts": [
+            {
+              "name": "web_search_help",
+              "description": "Get help with web search using Exa"
             },
             {
-              "name": "deep_researcher_start",
-              "description": "Start an AI research agent that searches, reads, and writes a detailed report.",
-              "input_schema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string",
-                    "description": "The research question or topic for the AI agent to investigate"
-                  }
-                },
-                "required": [
-                  "query"
-                ]
-              }
-            },
+              "name": "code_search_help",
+              "description": "Get help finding code examples and documentation"
+            }
+          ]
+        },
+        "resources/list": {
+          "resources": [
             {
-              "name": "deep_researcher_check",
-              "description": "Check status and get results from a deep research task.",
-              "input_schema": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "type": "object",
-                "properties": {
-                  "taskId": {
-                    "type": "string",
-                    "description": "The task ID returned from deep_researcher_start"
-                  }
-                },
-                "required": [
-                  "taskId"
-                ]
-              }
+              "uri": "exa://tools/list",
+              "name": "tools_list",
+              "mimeType": "application/json",
+              "description": "List of available Exa tools and their descriptions"
             }
           ]
         }

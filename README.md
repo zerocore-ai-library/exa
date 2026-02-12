@@ -54,18 +54,11 @@ Search the web for any topic and get clean, ready-to-use content.
 **Input:**
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `query` | string | Yes | The search query to find relevant web content |
-| `numResults` | number | No | Number of results to return (default: 10) |
-
-### `get_code_context_exa`
-
-Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs.
-
-**Input:**
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `query` | string | Yes | The code-related query to search for |
-| `numResults` | number | No | Number of results to return (default: 10) |
+| `query` | string | Yes | Websearch query |
+| `numResults` | number | No | Number of search results to return (default: 10) |
+| `livecrawl` | string | No | Live crawl mode - 'fallback', 'always', or 'never' |
+| `type` | string | No | Search type - 'auto' (default) or 'fast' |
+| `contextMaxCharacters` | number | No | Maximum characters for context string optimized for LLMs |
 
 ### `company_research_exa`
 
@@ -74,54 +67,34 @@ Research any company to get business information, news, and insights.
 **Input:**
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `companyName` | string | Yes | The name of the company to research |
+| `companyName` | string | Yes | Name of the company to research |
+| `numResults` | number | No | Number of search results to return (default: 10) |
 
-### `deep_search_exa`
+### `get_code_context_exa`
 
-Deep web search with smart query expansion and high-quality summaries for each result.
-
-**Input:**
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `query` | string | Yes | The search query for deep web search |
-| `numResults` | number | No | Number of results to return (default: 10) |
-
-### `crawling_exa`
-
-Get the full content of a specific webpage from a known URL.
+Find code examples, documentation, and programming solutions from GitHub, Stack Overflow, and docs.
 
 **Input:**
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `url` | string | Yes | The URL of the webpage to crawl |
+| `query` | string | Yes | Search query to find relevant context for APIs, Libraries, and frameworks |
+| `tokensNum` | number | No | Number of tokens to return (1000-50000, default: 10000) |
 
-### `linkedin_search_exa`
+## Prompts
 
-Search LinkedIn for companies and people using Exa AI.
+### `web_search_help`
 
-**Input:**
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `query` | string | Yes | The search query (company names, person names, or LinkedIn URLs) |
-| `numResults` | number | No | Number of results to return (default: 10) |
+Get help with web search using Exa.
 
-### `deep_researcher_start`
+### `code_search_help`
 
-Start an AI research agent that searches, reads, and writes a detailed report.
+Get help finding code examples and documentation.
 
-**Input:**
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `query` | string | Yes | The research question or topic for the AI agent |
+## Resources
 
-### `deep_researcher_check`
+### `exa://tools/list`
 
-Check status and get results from a deep research task.
-
-**Input:**
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `taskId` | string | Yes | The task ID returned from deep_researcher_start |
+List of available Exa tools and their descriptions.
 
 ## License
 
