@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "exa",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "display_name": "Exa MCP",
   "description": "Remote MCP server for AI-powered web search, code search, and research tools.",
   "homepage": "https://exa.ai",
